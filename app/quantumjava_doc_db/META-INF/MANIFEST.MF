@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Created-On: 2023-12-29T17:44:25.279Z
+Created-By: EGOGE (https://github.com/gosha70/document-assistant)
+Collection Name: c
+Embedding Class: langchain.embeddings.HuggingFaceInstructEmbeddings
+Embedding Model Name: hkunlp/instructor-large
+    
