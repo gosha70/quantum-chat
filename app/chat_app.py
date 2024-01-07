@@ -39,6 +39,7 @@ if next_question_delay is None or next_question_delay < 1:
 print(f"Minimum wait in seconds b/w questions: {next_question_delay}")
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
 #app.config.suppress_callback_exceptions = True
 
 SYSTEM_ERROR = "I apologize, but I'm unable to provide a specific answer to your question based on the information currently available to me.\nMy ability to respond accurately depends on a variety of factors, including the scope of my training data and the specific details of your query.\nIf you have any other questions or need assistance with a different topic, please feel free to ask, and I'll do my best to help."
