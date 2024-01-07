@@ -15,11 +15,17 @@ _See more details about the D.O.T. framework in [document-assistant repo](https:
 The LLM model with the vectorstore are already included into the `repo`.
 
 1. Clone this `repo`:
-`git clone git@github.com:gosha70/quantum-chat.git`   
-2. In the directory, where the `repo` was cloned, installed required **Python** libraries:
-`pip3 install -r requirements.txt`   
-3. To the application - just run the following (no input arguments are needed):
-`python3 -m app.chat_app`
+```
+git clone git@github.com:gosha70/quantum-chat.git
+```   
+3. In the directory, where the `repo` was cloned, installed required **Python** libraries:
+```
+pip3 install -r requirements.txt
+```   
+4. To the application - just run the following (no input arguments are needed):
+```
+python3 -m app.chat_app
+```
 
 :bookmark: _By default the **Dash** application starts on the port `8050`; if this port is not available on your machine, add `port=YOUR_PORT` in the following call in `chat_app.py`: `app.run_server(debug=False)`._
 
