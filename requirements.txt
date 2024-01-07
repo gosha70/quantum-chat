@@ -8,7 +8,7 @@ InstructorEmbedding
 sentence_transformers
 langchain==0.0.348
 llama-cpp-python
-chromadb==0.4.18
+chromadb==0.3.29
 # auto-gptq # Requires CUDA
 huggingface
 huggingface_hub
