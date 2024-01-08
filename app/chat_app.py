@@ -1,4 +1,4 @@
-import argparse
+import os
 import logging
 import json
 import time
@@ -24,7 +24,7 @@ to answer based on the information at hand, be honest and inform the user that y
 Avoid using external or additional information that is not part of the given context. 
 Strive to provide comprehensive and detailed answers to all questions, ensuring clarity and helpfulness in your responses."""
 
-DB_FOLDER = "./app/quantumjava_doc_db"
+DB_FOLDER = './app/quantumjava_doc_db/' # os.path.abspath('app/quantumjava_doc_db/')
 DB_COLLECTION_NAME= "EGOGE_DOCUMENTS_DB"
 
 with open('app/app_config.json', 'r') as file:
@@ -232,11 +232,10 @@ if __name__ == '__main__':
         format='%(asctime)s - %(levelname)s - %(message)s',
         datefmt='%Y-%m-%d %H:%M:%S'
     )
-    
 
     verbose = False
 
-    model_info = ModelInfo() # DEFAULT_MODEL_NAME = "hkunlp/instructor-large" 
+    model_info = ModelInfo() # DEFAULT_MODEL_NAME = "hkunlp/instructor-large"
 
     prompt_info = PromptInfo(QC_SYSTEM_PROMPT, None, True)
 

@@ -1,4 +1,5 @@
 import time
+from chromadb.config import Settings
 
 # Char-level splits
 CHUNK_SIZE = 1000
@@ -11,6 +12,12 @@ METADATA_PARAM_NAME = 'metadata'
 
 # Number of files to process at a time
 BATCH_SIZE = 300
+
+# Chroma settings
+CHROMA_SETTINGS = Settings(
+    anonymized_telemetry=False,
+    is_persistent=True,
+)
 
 DEFAULT_COLLECTION_NAME = "EGOGE_DOCUMENTS_DB"
 

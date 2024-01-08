@@ -8,7 +8,7 @@ from langchain.vectorstores import Chroma
 
 from .document_loader import load_documents
 
-from embeddings.embeddings_constants import DEFAULT_COLLECTION_NAME, BATCH_SIZE, get_elapse_time_message
+from embeddings.embeddings_constants import CHROMA_SETTINGS, DEFAULT_COLLECTION_NAME, BATCH_SIZE, get_elapse_time_message
 
 from models.model_info import ModelInfo
 from models.models_constants import DEFAULT_MODEL_NAME
@@ -321,7 +321,8 @@ def load_vector_store(model_name, collection_name, persist_directory) -> Chroma:
     return Chroma(
         persist_directory=persist_directory,
         collection_name=collection_name,
-        embedding_function=embedding
+        embedding_function=embedding,
+        client_settings=CHROMA_SETTINGS,
     )
 
 
