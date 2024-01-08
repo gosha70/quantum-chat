@@ -47,7 +47,33 @@ server = app.server
 #app.config.suppress_callback_exceptions = True
 
 SYSTEM_ERROR = "I apologize, but I'm unable to provide a specific answer to your question based on the information currently available to me.\nMy ability to respond accurately depends on a variety of factors, including the scope of my training data and the specific details of your query.\nIf you have any other questions or need assistance with a different topic, please feel free to ask, and I'll do my best to help."
- 
+
+# Set the logging level to INFO    
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+
+verbose = False
+
+model_info = ModelInfo() # DEFAULT_MODEL_NAME = "hkunlp/instructor-large"
+
+prompt_info = PromptInfo(QC_SYSTEM_PROMPT, None, True)
+
+logging.info(f"Loading the vectorstore from {DB_FOLDER} ...")
+docs_db = load_vector_store(
+    model_name=model_info.model_name, 
+    collection_name=DB_COLLECTION_NAME, 
+    persist_directory=DB_FOLDER
+)
+if docs_db is None:
+    logging.error(f"Failed to load the vectorstore from {DB_FOLDER}.")  
+else:
+    dic = docs_db.get()["ids"]
+    logging.info(f"Loaded the vectorstore with {len(dic)} documents.")  
+    qa_service = create_retrieval_qa(model_info=model_info, prompt_info=prompt_info, vectorstore=docs_db)
+    
 # This layout closely follows the structure of popular chat applications
 app.layout = dbc.Container([
         html.Div([
@@ -229,34 +255,9 @@ def get_answer(question):
     
     return answer
 
-if __name__ == '__main__':
-    # Set the logging level to INFO    
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(levelname)s - %(message)s',
-        datefmt='%Y-%m-%d %H:%M:%S'
-    )
-
-    verbose = False
-
-    model_info = ModelInfo() # DEFAULT_MODEL_NAME = "hkunlp/instructor-large"
-
-    prompt_info = PromptInfo(QC_SYSTEM_PROMPT, None, True)
-
-    logging.info(f"Loading the vectorstore from {DB_FOLDER} ...")
-    docs_db = load_vector_store(
-        model_name=model_info.model_name, 
-        collection_name=DB_COLLECTION_NAME, 
-        persist_directory=DB_FOLDER
-    )
-    
-    if docs_db is None:
-        logging.error(f"Failed to load the vectorstore from {DB_FOLDER}.")  
-    else:
-        dic = docs_db.get()["ids"]
-        logging.info(f"Loaded the vectorstore with {len(dic)} documents.")  
-        qa_service = create_retrieval_qa(model_info=model_info, prompt_info=prompt_info, vectorstore=docs_db)
-        if qa_service is None:
-            logging.error(f"Failed to initialize the retrieval framework for the vectorstore located in {DB_FOLDER}.")  
-        else:    
-            app.run_server(debug=False)   
+if __name__ == '__main__':  
+    if qa_service is None:
+        logging.error(f"Failed to initialize the retrieval framework for the vectorstore located in {DB_FOLDER}.")  
+    else:    
+        app.run_server(debug=False)   
+        
