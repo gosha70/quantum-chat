@@ -3,7 +3,6 @@ __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
-import os
 import logging
 import json
 import time
@@ -29,10 +28,10 @@ to answer based on the information at hand, be honest and inform the user that y
 Avoid using external or additional information that is not part of the given context. 
 Strive to provide comprehensive and detailed answers to all questions, ensuring clarity and helpfulness in your responses."""
 
-DB_FOLDER = './app/quantumjava_doc_db/' # os.path.abspath('app/quantumjava_doc_db/')
+DB_FOLDER = 'quantumjava_doc_db' 
 DB_COLLECTION_NAME= "EGOGE_DOCUMENTS_DB"
 
-with open('app/app_config.json', 'r') as file:
+with open('app_config.json', 'r') as file:
     app_config = json.load(file)
 
 verbose = False
