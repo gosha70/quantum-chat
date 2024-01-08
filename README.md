@@ -24,7 +24,7 @@ pip3 install -r requirements.txt
 ```   
 4. To the application - just run the following (no input arguments are needed):
 ```
-python3 -m app.chat_app
+python3 -m src.chat_app
 ```
 
 :bookmark: _By default the **Dash** application starts on the port `8050`; if this port is not available on your machine, add `port=YOUR_PORT` in the following call in `chat_app.py`: `app.run_server(debug=False)`._
