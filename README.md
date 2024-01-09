@@ -22,13 +22,9 @@ git clone git@github.com:gosha70/quantum-chat.git
 ```
 pip3 install -r requirements.txt
 ```   
-4. To the application - just run the following (no input arguments are needed):
+4. To run the application,  `cd src` and run the following command (no input arguments are needed):
 ```
-python3 -m src.app
+python3 -m app
 ```
 
 :bookmark: _By default the **Dash** application starts on the port `8050`; if this port is not available on your machine, add `port=YOUR_PORT` in the following call in `app.py`: `app.run_server(debug=False)`._
-
-### Deploy on Render
-
-This application is ready to be deployed on [Render](https://dashboard.render.com/).
